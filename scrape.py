@@ -2,7 +2,7 @@ import json
 import requests
 from bs4 import BeautifulSoup
 
-def scrape(country):
+def scrape(country='India'):
     country = country.lower().replace(' ', '-')
     res = requests.get('https://www.factmonster.com/world/countries/'+country)
     url_data = BeautifulSoup(res.text, 'html.parser')
@@ -17,7 +17,9 @@ def scrape(country):
                     if j in str(i):
                         result[j] = i.text.split(':')[1].strip()
                         break
-                except IndexError as e:
+                    else:
+                        result[j] = None
+                except IndexError:
                     result[j] = 'Failed to retrieve'
         return result
 
@@ -31,9 +33,13 @@ def scrape(country):
                     if j in str(i):
                         result[j] = i.text.split(':')[1].split(',')[0].strip()
                         break
+                    else:
+                        result[j] = None
                     if 'Capital and largest' in str(i):
                         result['Largest city'] = result['Capital']
-                except IndexError as e:
+                    else:
+                        result['Largest city'] = None
+                except IndexError:
                     result[j] = 'Failed to retrieve'
         return result
 
@@ -52,4 +58,5 @@ def scrape(country):
     info['map']=get_map(url_data)
 
     counrty_json = json.dumps(info)
+    print(info)
     return counrty_json
