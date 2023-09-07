@@ -1,1 +1,7 @@
 # country_data_fetching_API
+
+This small project was created to understand more about Flask.
+
+This api scarpes data from 'https://www.factmonster.com/' about country which ever is at the end of the url.
+For example: https://country-info-x77q.onrender.com/india
+so here API will scrape data about India from factmonster.com and return it in JSON format.
