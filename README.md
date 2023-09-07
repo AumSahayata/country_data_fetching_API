@@ -9,3 +9,5 @@ URL: https://country-info-x77q.onrender.com/[Name_of_a_country]
 For example: https://country-info-x77q.onrender.com/india
 
 so here API will scrape data about India from factmonster.com and return it in JSON format.
+
+(P.S: Responce will be little slow beacuse API uses a free hosting)
